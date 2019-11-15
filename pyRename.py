@@ -4,7 +4,13 @@ import sys
 #install requirements
 f = open("./firstRun.txt", "r+")
 if f.read() == "True\n":
-	os.system("pip3 install -r requirements.txt")
+	try:
+		os.system("pip3 install --user -r requirements.txt")
+	except:
+		try:
+			os.system("pip install --user -r requirements.txt")
+		except:
+			raise("Requirements.txt was not installed")
 	f.write("REMOVE THIS TEXT LEAVING ONLY \"True \\n\" TO REINSTALL PACKAGES")
 
 from termcolor import colored as col
